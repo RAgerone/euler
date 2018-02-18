@@ -16,3 +16,23 @@ def is_palindrome(num):
         first_index += 1
         last_index -=1
     return True
+
+def largest_palindrome(num_digits):
+    largest_possible = 0
+    for i in range(num_digits):
+        largest_possible += 9*(10**i)
+    product = largest_possible ** 2
+    arr = [int(x) for x in str(product)]
+    first_index = 0
+    last_index = len(arr) - 1
+    while first_index < last_index:
+        if arr[first_index] > arr[last_index]:
+            arr[first_index] = arr[first_index] - 1
+            arr[last_index] = arr[first_index]
+        elif arr[first_index] < arr[last_index]:
+            arr[last_index] = arr[first_index]
+        first_index += 1
+        last_index -=1
+    return arr
+
+print(largest_palindrome(2))
